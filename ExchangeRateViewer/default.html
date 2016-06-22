@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>ExchangeRateViewer</title>
+
+    <link href="WinJS/css/ui-dark.css" rel="stylesheet" />
+    <link href="/Content/foundation/foundation.css" rel="stylesheet" />
+    <link href="/Content/foundation/normalize.css" rel="stylesheet" />
+    <link href="/Content/foundation/foundation-datepicker.min.css" rel="stylesheet" />
+    <link href="/Content/angular-chart.min.css" rel="stylesheet" />
+    <link href="/css/icons/foundation-icons.css" rel="stylesheet" />
+    <link href="/css/default.css" rel="stylesheet" />
+
+</head>
+<body ng-app="exchangeRateViewerApp">
+
+    <div class="scrollable">
+        <div ng-view></div>
+    </div>
+
+
+    <script src="Scripts/jquery-2.2.3.min.js"></script>
+    <script src="WinJS/js/base.js"></script>
+    <script src="WinJS/js/ui.js"></script>
+    <script src="Scripts/foundation/foundation.js"></script>
+    <script src="Scripts/foundation/foundation.reveal.js"></script>
+    <script src="Scripts/Chart.js"></script>
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/angular-route.min.js"></script>
+    <script src="Scripts/angular-chart.min.js"></script>
+    <script src="/Scripts/foundation/foundation-datepicker.min.js"></script>
+
+    <script src="/js/app.js"></script>
+    <script src="/js/controller/mainController.js"></script>
+    <script src="/js/controller/detailsController.js"></script>
+    <script src="/js/service/currencyLoader.js"></script>
+    <script src="/js/service/dateUtils.js"></script>
+    <script src="/js/service/stateKeeper.js"></script>
+    <script src="/js/default.js"></script>
+
+</body>
+</html>
