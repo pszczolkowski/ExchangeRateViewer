@@ -1,1 +1,78 @@
-﻿
+﻿body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.scrollable {
+	height: 100%;
+	overflow-y: auto;
+}
+
+@font-face {
+  font-family: "Symbols";
+  src: url(/WinJS/fonts/Symbols.ttf);
+}
+
+.icon-back::before {
+    content: "\E112";
+}
+
+.icon {
+    font-family: "Segoe UI Command", "Symbols";
+	font-weight: normal;
+	outline: none;
+}
+
+.icon-edit::before {
+    content: "\E104";
+}
+
+.centered-view {
+	font-size: 25px;
+	margin-top: 40%;
+}
+
+#currency-list {
+	width: 100%;
+}
+
+#startDatePickerButton, #endDatePickerButton, .moved-up {
+	margin-top: -7px;
+}
+
+.main-view {
+	margin-top: 50px;
+}
+
+.font-normal {
+	font-weight: normal !important;
+	text-transform: none !important;
+}
+
+table.hover tbody tr:hover {
+	background-color: #ecfaff;
+}
+
+.clickable {
+	cursor: pointer;
+}
+
+.right-space {
+	margin-right: 10px !important;
+}
+
+#chart-wrapper {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 10px;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.button.narrow {
+	padding-left: 10px;
+	padding-right: 10px;
+}

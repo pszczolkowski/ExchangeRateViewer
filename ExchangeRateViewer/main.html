@@ -1,0 +1,85 @@
+﻿<div class="sticky fixed">
+    <nav class="top-bar" data-topbar role="navigation">
+        <ul class="title-area">
+            <li class="name">
+                <h1>
+                    <a>Kursy walut</a>
+                </h1>
+            </li>
+            <li class="toggle-topbar">
+                <a class="font-normal" href="" ng-click="close()">Zamknij</a>
+            </li>
+        </ul>
+
+        <section class="top-bar-section">
+            <ul class="right">
+                <li><a href="" ng-click="close()">Zamknij</a></li>
+            </ul>
+    
+        </section>
+    </nav>
+</div>
+
+
+<div class="main-view" ng-show="!loading && !noInternetConnection && !error">
+
+    <div class="row">
+        <div class="small-12 medium-10 medium-offset-1 large-8 large-offset-2 columns">
+             <div class="panel callout radius">
+                <h5>
+                    Z dnia {{date | date:'dd-MM-yyyy'}}
+                    <div class="moved-up right">
+                        <button class="button tiny" ng-click="selectToday()">Dzisiaj</button>
+                        <button id="datepickerButton" class="button tiny">Zmień</button>
+                    </div>
+                </h5>
+             </div>
+        </div>
+    </div>
+
+   <div class="row">
+       <div class="small-12 medium-10 medium-offset-1 large-8 large-offset-2 columns">
+           <table id="currency-list" class="hover">
+                <thead>
+                    <tr>
+                        <th>Nazwa</th>
+                        <th>kurs</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr class="clickable" ng-repeat="currency in currencies" ng-click="showCurrencyDetails(currency)">
+                        <td>
+                            <span ng-if="::currency.name">
+                                {{currency.name}}<br />
+                                <small>{{currency.code}}</small>
+                            </span>
+                            <span ng-if="::!currency.name">
+                                {{currency.code}} ({{currency.country}})
+                            </span>
+                        </td>
+                        <td>
+                            {{currency.courses[0].course}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+       </div>
+   </div>
+
+    
+</div>
+
+<div ng-show="loading" class="centered-view">
+    <p class="text-center">Proszę czekać, trwa wczytywanie danych...</p>
+</div>
+
+<div ng-show="noInternetConnection" class="text-center centered-view">
+    Brak połączenia z internetem<br />
+    <a href="" ng-click="loadCurrencies()">Spróbuj ponownie</a>
+</div>
+
+<div ng-show="error" class="text-center centered-view">
+    Wystąpił problem z wczytaniem danych<br />
+    <a href="" ng-click="loadCurrencies()">Spróbuj ponownie</a>
+</div>
