@@ -1,0 +1,116 @@
+﻿<div class="sticky fixed">
+    <nav class="top-bar" data-topbar role="navigation">
+      <ul class="title-area">
+        <li class="name">
+          <h1>
+              <a href="#" ng-show="!loading">
+                  <span class="icon icon-back right-space"></span>
+                  Historia kursu waluty {{currencyName}}
+              </a>
+              <a href="" ng-show="loading">
+                  <span class="icon icon-back right-space"></span>
+                  Historia kursu waluty {{currencyName}}
+              </a>
+          </h1>
+        </li>
+        <li class="toggle-topbar" ng-show="!loading && !noInternetConnection && !error">
+            <a class="font-normal" href="" ng-click="saveChart()">Zapisz wykres</a>
+        </li>
+      </ul>
+
+      <section class="top-bar-section" ng-show="!loading && !noInternetConnection && !error">
+        <ul class="right">
+          <li><a href="" ng-click="saveChart()">Zapisz wykres</a></li>
+        </ul>
+    
+      </section>
+    </nav>
+</div>
+
+<div class="main-view">
+    <div ng-show="chart.labels.length == 0 && !loading" class="text-center centered-view">
+        Brak danych do wyświetlenia
+    </div>
+
+    <div id="chart-wrapper" ng-show="!loading && !noInternetConnection && !error">
+        <canvas id="chart" 
+                class="chart chart-line" 
+                ng-if="!loading && !noInternetConnection && !error"
+                chart-data="chart.courses"
+                chart-labels="chart.labels" 
+                chart-legend="true" 
+                chart-series="chart.series"
+                chart-options="{
+                    bezierCurve: false,
+                    pointDot: false,
+                    datasetFill: false,
+                    pointHitDetectionRadius: 1
+                }" >
+        </canvas> 
+
+        <div class="row">
+            <div class="small-6 medium-5 medium-offset-1 large-4 large-offset-2 columns">
+                 <div class="panel callout radius">
+                    <h5>
+                        Od {{startDate | date:'dd-MM-yyyy'}}
+                        <button id="startDatePickerButton" class="button tiny narrow right ">
+                            <i class="icon icon-edit bold show-for-small-only"></i>
+                            <span class="show-for-medium-up">Zmień</span>
+                        </button>
+                    </h5>
+                 </div>
+            </div>
+
+            <div class="small-6 medium-5 large-4 columns end">
+                 <div class="panel callout radius">
+                    <h5>
+                        do {{endDate | date:'dd-MM-yyyy'}}
+                        <button id="endDatePickerButton" class="button tiny narrow right">
+                            <i class="icon icon-edit bold show-for-small-only"></i>
+                            <span class="show-for-medium-up">Zmień</span>
+                        </button>
+                    </h5>
+                 </div>
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="small-12 medium-10 medium-offset-1 large-8 large-offset-2 columns">
+                <button ng-click="loadCurrency()" class="button expand">Wyświetl</button>
+            </div>
+        </div>
+    </div>
+
+    <div ng-show="loading" class="centered-view">
+        <p class="text-center">Proszę czekać, trwa wczytywanie danych...</p>
+
+        <div class="progress small-10 small-offset-1">
+          <span id="loadingProgressBar" class="meter" style="width: 0%"></span>
+        </div>
+    </div>
+
+    <div ng-show="noInternetConnection" class="text-center centered-view">
+        Brak połączenia z internetem<br />
+        <a href="" ng-click="loadCurrency()">Spróbuj ponownie</a>
+    </div>
+
+    <div ng-show="error" class="text-center centered-view">
+        Wystąpił problem z wczytaniem danych<br />
+        <a href="" ng-click="loadCurrency()">Spróbuj ponownie</a>
+    </div>
+
+    
+    <!-- MODALS -->
+    <div id="fileSaveSuccessModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+      <p class="lead">Wykres został zapisany</p>
+      <button aria-label="Close" class="button right close">OK</button>
+    </div>
+
+    <div id="fileSaveErrorModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+      <p class="lead">Nie udało się zapisać wykresu</p>
+      <button aria-label="Close" class="button right close">OK</button>
+    </div>
+
+</div>
+
+
